@@ -1,0 +1,4 @@
+1 streams: 256 tokens in 8.9s -> aggregate 28.6 tok/s | per-stream 28.6 tok/s | mean TTFT 1.04s
+2 streams: 512 tokens in 17.2s -> aggregate 29.8 tok/s | per-stream 14.9 tok/s | mean TTFT 1.35s
+4 streams: 1024 tokens in 26.7s -> aggregate 38.3 tok/s | per-stream 9.6 tok/s | mean TTFT 0.66s
+8 streams: 2048 tokens in 54.0s -> aggregate 37.9 tok/s | per-stream 4.7 tok/s | mean TTFT 1.62s

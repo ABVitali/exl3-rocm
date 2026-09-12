@@ -1,0 +1,51 @@
+### 01:10:23 STEP start GLM download (python:3.12-slim) + vllm image pull in background
+dl-glm started
+### 01:10:24 SKIP run_droplet.sh (rocm/pytorch torch is gfx942-only; arch=gfx950), tests run in the vLLM image
+### 01:10:24 STEP exl3vllm container (plugin + extensions inside vllm/vllm-openai-rocm:nightly)
+pull-vllm exit 0
+exl3vllm up
+torch 2.12.0+git6bbd260 hip 7.2.53211 | vllm 0.28.1rc1.dev681+ge7edf17ce |  | archs ['gfx90a', 'gfx942', 'gfx950', 'gfx1100', 'gfx1101', 'gfx1200', 'gfx1201', 'gfx1150', 'gfx1151']
+gfx950
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+ext1 exit 0
+ext2 exit 0
+43 passed in 36.42s
+### 01:13:44 STEP wait for GLM download
+tail: cannot open '/models/dl-glm.log' for reading: No such file or directory
+ls: cannot access '/models/GLM-5.3-Flash-EXL3-K2': No such file or directory
+0
+### 01:13:44 STEP batch_chain.sh (native cap32 vs exllamav3 vs auto)
+### 01:13:44 STEP kernel microbench gfx942 (E=288, GLM shape)
+    1      8        0.84        0.45    0.54x
+    2     16        0.85        0.93    1.11x
+    4     29        1.33        1.84    1.38x
+    8     58        2.42        3.68    1.52x
+   16    106        2.71        7.39    2.73x
+   32    183        3.71       14.80    3.99x
+   64    242        4.39       29.53    6.73x
+### 01:13:48 STEP serve backend=native
+### 01:16:16 bench_conc backend=native
+1 streams: 256 tokens in 8.9s -> aggregate 28.6 tok/s | per-stream 28.6 tok/s | mean TTFT 1.04s
+2 streams: 512 tokens in 17.2s -> aggregate 29.8 tok/s | per-stream 14.9 tok/s | mean TTFT 1.35s
+4 streams: 1024 tokens in 26.7s -> aggregate 38.3 tok/s | per-stream 9.6 tok/s | mean TTFT 0.66s
+8 streams: 2048 tokens in 54.0s -> aggregate 37.9 tok/s | per-stream 4.7 tok/s | mean TTFT 1.62s
+### 01:18:28 STEP serve backend=exllamav3
+### 01:20:36 bench_conc backend=exllamav3
+1 streams: 256 tokens in 7.9s -> aggregate 32.2 tok/s | per-stream 32.2 tok/s | mean TTFT 0.81s
+2 streams: 512 tokens in 10.1s -> aggregate 50.8 tok/s | per-stream 25.4 tok/s | mean TTFT 0.70s
+4 streams: 1024 tokens in 14.0s -> aggregate 73.1 tok/s | per-stream 18.3 tok/s | mean TTFT 1.42s
+8 streams: 2048 tokens in 18.2s -> aggregate 112.3 tok/s | per-stream 14.0 tok/s | mean TTFT 1.53s
+### 01:21:26 fidelity backend=exllamav3 vs native dump
+top-1 agreement: 561/768 = 73.05%   mean |dlogprob| on agreed tokens: 0.0263   mean KL(top5): 0.02563
+### 01:21:47 STEP serve backend=auto
+### 01:23:15 bench_conc backend=auto
+1 streams: 256 tokens in 8.8s -> aggregate 29.0 tok/s | per-stream 29.0 tok/s | mean TTFT 0.64s
+2 streams: 512 tokens in 16.3s -> aggregate 31.4 tok/s | per-stream 15.7 tok/s | mean TTFT 0.90s
+4 streams: 1024 tokens in 26.8s -> aggregate 38.3 tok/s | per-stream 9.6 tok/s | mean TTFT 0.87s
+8 streams: 2048 tokens in 52.5s -> aggregate 39.0 tok/s | per-stream 4.9 tok/s | mean TTFT 0.79s
+### 01:25:00 fidelity backend=auto vs native dump
+top-1 agreement: 630/768 = 82.03%   mean |dlogprob| on agreed tokens: 0.0218   mean KL(top5): 0.01898
+### 01:25:24 DONE
+### 01:25:24 DONE

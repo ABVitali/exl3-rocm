@@ -1,0 +1,6 @@
+DIFF  'import numpy as np\n\ndef softmax(x):\n'
+SAME  'List three prime numbers greater than '
+DIFF  'Q: What is 17 * 23? A:'
+DIFF  'The main difference between TCP and UD'
+
+top-1 agreement: 561/768 = 73.05%   mean |dlogprob| on agreed tokens: 0.0263   mean KL(top5): 0.02563

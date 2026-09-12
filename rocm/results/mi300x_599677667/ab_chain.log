@@ -1,0 +1,29 @@
+### 17:22:21 STEP exact path (VLLM_EXL3_MOE_KERNEL=exllamav3 EXL3_FUSED_MOE=0, eager)
+saved /work/rocm/results/lp_exact.json
+TTFT 2.00s | 127 chunks in 32.05s -> 4.0 tok/s decode (single stream)
+### 17:29:00 COMPARE native vs exact
+SAME  'The capital of France is'
+DIFF  'def fibonacci(n):\n    """Return the n-'
+DIFF  'In 1969, Neil Armstrong'
+DIFF  'Explain briefly why the sky is blue.'
+SAME  'SELECT name, COUNT(*) FROM users GROUP'
+SAME  'Translate to Italian: The weather is n'
+DIFF  'The derivative of x^3 is'
+DIFF  'Once upon a time, in a small village,'
+DIFF  'import numpy as np\n\ndef softmax(x):\n'
+DIFF  'List three prime numbers greater than '
+SAME  'Q: What is 17 * 23? A:'
+SAME  'The main difference between TCP and UD'
+
+top-1 agreement: 559/768 = 72.79%   mean |dlogprob| on agreed tokens: 0.0148   mean KL(top5): 0.00491
+### 17:29:00 STEP native + HIP graphs (ENFORCE_EAGER=0)
+### 17:30:48 ENGINE FAILED (/work/vllm-serve-graphs.log)
+    measured = int(runner.capture_model(profile_only=True))
+    self.cudagraph_manager.capture(
+    raise RuntimeError(
+RuntimeError: Glm5NextForConditionalGeneration: piecewise CUDA graphs (cudagraph_mode=FULL_AND_PIECEWISE) unavailable, model is not torch-compiled and breakable CUDA graph is off. Set VLLM_USE_BREAKAB
+### 17:30:48 STEP native + MTP k=2 (eager)
+TTFT 2.58s | 105 chunks in 10.79s -> 9.7 tok/s decode (single stream)
+acceptance rate: 0.667
+Draft acceptance rate: 41.7
+### 17:33:10 DONE

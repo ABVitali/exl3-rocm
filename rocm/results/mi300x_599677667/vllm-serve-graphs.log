@@ -1,0 +1,399 @@
+### 17:29:08 vllm serve /models/GLM-5.3-Flash-EXL3-K2 --served-model-name GLM-5.3-Flash-EXL3 --host 127.0.0.1 --port 8888 --tensor-parallel-size 1 --quantization exl3 --load-format auto --max-model-len 8192 --max-num-seqs 1 --max-num-batched-tokens 2048 --kv-cache-dtype auto --skip-mm-profiling --limit-mm-per-prompt {"image":4,"video":1} --tool-call-parser glm47 --enable-auto-tool-choice --reasoning-parser glm45 --chat-template /models/GLM-5.3-Flash-EXL3-K2/chat_template.jinja --no-enable-prefix-caching --gpu-memory-utilization 0.87
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347] 
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev681+ge7edf17ce
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /models/GLM-5.3-Flash-EXL3-K2
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:347] 
+(APIServer pid=1858) INFO 09-11 17:29:16 [api_utils.py:286] non-default args: {'model_tag': '/models/GLM-5.3-Flash-EXL3-K2', 'chat_template': '/models/GLM-5.3-Flash-EXL3-K2/chat_template.jinja', 'enable_auto_tool_choice': True, 'tool_call_parser': 'glm47', 'host': '127.0.0.1', 'port': 8888, 'model': '/models/GLM-5.3-Flash-EXL3-K2', 'max_model_len': 8192, 'quantization': 'exl3', 'served_model_name': ['GLM-5.3-Flash-EXL3'], 'reasoning_parser': 'glm45', 'gpu_memory_utilization': 0.87, 'enable_prefix_caching': False, 'limit_mm_per_prompt': {'image': 4, 'video': 1}, 'skip_mm_profiling': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 1}
+(APIServer pid=1858) WARNING 09-11 17:29:16 [envs.py:2290] Unknown vLLM environment variable detected: VLLM_EXL3_MOE_KERNEL
+(APIServer pid=1858) INFO 09-11 17:29:16 [model.py:692] Resolved architecture: Glm5NextForConditionalGeneration
+(APIServer pid=1858) INFO 09-11 17:29:16 [model.py:2030] Using max model len 8192
+(APIServer pid=1858) [aiter] import [module_aiter_core] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_core.so
+(APIServer pid=1858) INFO 09-11 17:29:18 [kernel.py:369] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['aiter', 'native'], fused_add_rms_norm=['aiter', 'native'])
+(APIServer pid=1858) INFO 09-11 17:29:18 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant, mla_dual_rms_norm
+(APIServer pid=1858) [transformers] The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+(APIServer pid=1858) INFO 09-11 17:29:23 [base.py:261] Multi-modal warmup completed in 2.002s
+(APIServer pid=1858) INFO 09-11 17:29:24 [base.py:261] Readonly multi-modal warmup completed in 1.867s
+(EngineCore pid=1954) INFO 09-11 17:29:27 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev681+ge7edf17ce) with config: model='/models/GLM-5.3-Flash-EXL3-K2', speculative_config=None, tokenizer='/models/GLM-5.3-Flash-EXL3-K2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=exl3, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='glm45', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=GLM-5.3-Flash-EXL3, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', '+grouped_topk', '+sparse_attn_indexer', 'none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_mla_dual_rms_norm': True, 'fuse_rope_kvcache': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 2, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['aiter', 'native'], fused_add_rms_norm=['aiter', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=1954) [aiter] import [module_aiter_core] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_core.so
+(EngineCore pid=1954) INFO 09-11 17:29:29 [parallel_state.py:1807] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.5:40345 backend=nccl
+(EngineCore pid=1954) INFO 09-11 17:29:29 [parallel_state.py:2173] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(EngineCore pid=1954) INFO 09-11 17:29:29 [gpu_worker.py:438] Using V2 Model Runner
+(EngineCore pid=1954) INFO 09-11 17:29:30 [model_runner.py:394] Loading model from scratch...
+(EngineCore pid=1954) INFO 09-11 17:29:30 [rocm.py:764] Using AITER Flash Attention backend for ViT model.
+(EngineCore pid=1954) INFO 09-11 17:29:30 [mm_encoder_attention.py:372] Using AttentionBackendEnum.ROCM_AITER_FA for MMEncoderAttention.
+(EngineCore pid=1954) INFO 09-11 17:29:30 [kernel.py:369] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['aiter', 'native'], fused_add_rms_norm=['aiter', 'native'])
+(EngineCore pid=1954) INFO 09-11 17:29:30 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant, mla_dual_rms_norm
+(EngineCore pid=1954) INFO 09-11 17:29:30 [rocm.py:727] Using ROCM_AITER_MLA_SPARSE backend out of potential backends: ['ROCM_AITER_MLA_SPARSE'].
+(EngineCore pid=1954) WARNING 09-11 17:29:30 [mla_attention.py:585] Sparse MLA layer has no dense-MHA prefill path; using the top-k MQA path only.
+(EngineCore pid=1954) WARNING 09-11 17:29:30 [compilation.py:1354] Op 'grouped_topk' not present in model, enabling with '+grouped_topk' has no effect
+(EngineCore pid=1954) WARNING 09-11 17:29:30 [compilation.py:1354] Op 'sparse_attn_indexer' not present in model, enabling with '+sparse_attn_indexer' has no effect
+(EngineCore pid=1954) WARNING 09-11 17:29:30 [vllm.py:3094] `torch.compile` is turned on, but the model /models/GLM-5.3-Flash-EXL3-K2 does not support it. Please open an issue on GitHub if you want it to be supported.
+(EngineCore pid=1954) WARNING 09-11 17:29:31 [vllm.py:3094] `torch.compile` is turned on, but the model /models/GLM-5.3-Flash-EXL3-K2 does not support it. Please open an issue on GitHub if you want it to be supported.
+(EngineCore pid=1954) INFO 09-11 17:29:31 [weight_utils.py:895] Filesystem type for checkpoints: EXT4. Checkpoint size: 91.02 GiB. Available RAM: 225.90 GiB.
+(EngineCore pid=1954) INFO 09-11 17:29:31 [weight_utils.py:918] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   0% Completed | 0/120 [00:00<?, ?it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   1% Completed | 1/120 [00:01<02:45,  1.39s/it]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   2% Completed | 2/120 [00:01<01:45,  1.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   2% Completed | 3/120 [00:02<01:20,  1.45it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   3% Completed | 4/120 [00:02<01:13,  1.58it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   4% Completed | 5/120 [00:03<01:05,  1.76it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   5% Completed | 6/120 [00:03<00:59,  1.93it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   6% Completed | 7/120 [00:04<00:59,  1.91it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   7% Completed | 8/120 [00:04<00:55,  2.02it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   8% Completed | 9/120 [00:05<00:56,  1.98it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   8% Completed | 10/120 [00:05<00:53,  2.06it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:   9% Completed | 11/120 [00:06<00:51,  2.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  10% Completed | 12/120 [00:06<00:52,  2.06it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  11% Completed | 13/120 [00:07<00:50,  2.14it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  12% Completed | 14/120 [00:07<00:47,  2.21it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  12% Completed | 15/120 [00:08<00:48,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  13% Completed | 16/120 [00:08<00:47,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  14% Completed | 17/120 [00:08<00:45,  2.25it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  15% Completed | 18/120 [00:09<00:46,  2.18it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  16% Completed | 19/120 [00:09<00:45,  2.24it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  17% Completed | 20/120 [00:10<00:44,  2.24it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  18% Completed | 21/120 [00:10<00:45,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  18% Completed | 22/120 [00:11<00:43,  2.23it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  19% Completed | 23/120 [00:11<00:45,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  20% Completed | 24/120 [00:12<00:44,  2.18it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  21% Completed | 25/120 [00:12<00:42,  2.22it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  22% Completed | 26/120 [00:13<00:44,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  22% Completed | 27/120 [00:13<00:42,  2.18it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  23% Completed | 28/120 [00:13<00:41,  2.24it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  24% Completed | 29/120 [00:14<00:47,  1.92it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  25% Completed | 30/120 [00:15<00:45,  1.99it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  26% Completed | 31/120 [00:15<00:42,  2.09it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  27% Completed | 32/120 [00:15<00:43,  2.05it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  28% Completed | 33/120 [00:16<00:41,  2.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  28% Completed | 34/120 [00:16<00:41,  2.05it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  29% Completed | 35/120 [00:17<00:39,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  30% Completed | 36/120 [00:17<00:38,  2.20it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  31% Completed | 37/120 [00:18<00:39,  2.11it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  32% Completed | 38/120 [00:18<00:38,  2.14it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  32% Completed | 39/120 [00:19<00:37,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  33% Completed | 40/120 [00:19<00:37,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  34% Completed | 41/120 [00:20<00:36,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  35% Completed | 42/120 [00:20<00:34,  2.24it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  36% Completed | 43/120 [00:21<00:36,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  37% Completed | 44/120 [00:21<00:34,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  38% Completed | 45/120 [00:22<00:35,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  38% Completed | 46/120 [00:22<00:34,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  39% Completed | 47/120 [00:22<00:33,  2.21it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  40% Completed | 48/120 [00:23<00:34,  2.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  41% Completed | 49/120 [00:23<00:32,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  42% Completed | 50/120 [00:24<00:31,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  42% Completed | 51/120 [00:24<00:32,  2.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  43% Completed | 52/120 [00:25<00:31,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  44% Completed | 53/120 [00:25<00:30,  2.22it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  45% Completed | 54/120 [00:26<00:31,  2.11it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  46% Completed | 55/120 [00:26<00:30,  2.14it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  47% Completed | 56/120 [00:27<00:29,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  48% Completed | 57/120 [00:27<00:29,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  48% Completed | 58/120 [00:28<00:28,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  49% Completed | 59/120 [00:28<00:29,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  50% Completed | 60/120 [00:28<00:27,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  51% Completed | 61/120 [00:29<00:26,  2.23it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  52% Completed | 62/120 [00:29<00:26,  2.15it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  52% Completed | 63/120 [00:30<00:26,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  53% Completed | 64/120 [00:30<00:25,  2.19it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  54% Completed | 65/120 [00:31<00:26,  2.11it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  55% Completed | 66/120 [00:31<00:25,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  56% Completed | 67/120 [00:32<00:23,  2.23it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  57% Completed | 68/120 [00:32<00:24,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  57% Completed | 69/120 [00:33<00:23,  2.13it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  58% Completed | 70/120 [00:33<00:24,  2.05it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  59% Completed | 71/120 [00:34<00:22,  2.14it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  60% Completed | 72/120 [00:34<00:22,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  61% Completed | 73/120 [00:35<00:22,  2.05it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  62% Completed | 74/120 [00:35<00:21,  2.11it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  62% Completed | 75/120 [00:35<00:20,  2.17it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  63% Completed | 76/120 [00:36<00:20,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  64% Completed | 77/120 [00:36<00:20,  2.12it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  65% Completed | 78/120 [00:37<00:20,  2.00it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  66% Completed | 79/120 [00:38<00:22,  1.80it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  67% Completed | 80/120 [00:38<00:22,  1.80it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  68% Completed | 81/120 [00:39<00:22,  1.70it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  68% Completed | 82/120 [00:39<00:21,  1.75it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  69% Completed | 83/120 [00:40<00:19,  1.90it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  70% Completed | 84/120 [00:41<00:20,  1.72it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  71% Completed | 85/120 [00:41<00:20,  1.69it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  72% Completed | 86/120 [00:42<00:18,  1.80it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  72% Completed | 87/120 [00:42<00:18,  1.82it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  73% Completed | 88/120 [00:43<00:16,  1.93it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  74% Completed | 89/120 [00:43<00:15,  2.01it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  75% Completed | 90/120 [00:44<00:14,  2.00it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  76% Completed | 91/120 [00:44<00:14,  2.07it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  77% Completed | 92/120 [00:45<00:13,  2.01it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  78% Completed | 93/120 [00:45<00:12,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  78% Completed | 94/120 [00:45<00:12,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  79% Completed | 95/120 [00:46<00:11,  2.10it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  80% Completed | 96/120 [00:46<00:11,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  81% Completed | 97/120 [00:47<00:10,  2.23it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  82% Completed | 98/120 [00:47<00:10,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  82% Completed | 99/120 [00:48<00:09,  2.20it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  83% Completed | 100/120 [00:48<00:08,  2.25it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  84% Completed | 101/120 [00:49<00:08,  2.18it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  85% Completed | 102/120 [00:49<00:08,  2.22it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  86% Completed | 103/120 [00:50<00:07,  2.16it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  88% Completed | 105/120 [00:50<00:04,  3.65it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  88% Completed | 106/120 [00:50<00:03,  4.23it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  89% Completed | 107/120 [00:50<00:03,  3.65it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  90% Completed | 108/120 [00:51<00:03,  3.21it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  91% Completed | 109/120 [00:51<00:04,  2.71it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  92% Completed | 110/120 [00:52<00:03,  2.59it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  92% Completed | 111/120 [00:52<00:03,  2.53it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  93% Completed | 112/120 [00:52<00:03,  2.32it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  94% Completed | 113/120 [00:53<00:03,  2.29it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  95% Completed | 114/120 [00:53<00:02,  2.28it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  96% Completed | 115/120 [00:54<00:02,  2.21it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  97% Completed | 116/120 [00:54<00:01,  2.20it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  98% Completed | 117/120 [00:55<00:01,  2.09it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  98% Completed | 118/120 [00:55<00:00,  2.15it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards:  99% Completed | 119/120 [00:56<00:00,  2.21it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards: 100% Completed | 120/120 [00:56<00:00,  1.78it/s]
+(EngineCore pid=1954) Loading safetensors checkpoint shards: 100% Completed | 120/120 [00:56<00:00,  2.11it/s]
+(EngineCore pid=1954) 
+(EngineCore pid=1954) INFO 09-11 17:30:28 [default_loader.py:430] Loading weights took 57.06 seconds
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:28 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:29 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) INFO 09-11 17:30:30 [exl3.py:2080] EXL3 MCG trellis engaged for routed experts: bits=2 experts_local=288 hidden=4096 intermediate_local=2048 fused_moe=exl3_moe concurrency=1 (no BF16 expert reconstruct at load)
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 1/1024 [00:00<09:08,  1.87it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  66%|██████▌   | 674/1024 [00:00<00:00, 1417.01it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 1416.16it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  78%|███████▊  | 801/1024 [00:00<00:00, 8000.55it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5634.72it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  78%|███████▊  | 802/1024 [00:00<00:00, 8012.46it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5514.66it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  80%|███████▉  | 818/1024 [00:00<00:00, 8174.22it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 8081.39it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  78%|███████▊  | 794/1024 [00:00<00:00, 7937.00it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 4962.28it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  80%|████████  | 822/1024 [00:00<00:00, 8210.28it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5827.80it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  80%|████████  | 820/1024 [00:00<00:00, 8193.46it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5678.79it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  79%|███████▉  | 811/1024 [00:00<00:00, 8106.32it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5517.42it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  78%|███████▊  | 800/1024 [00:00<00:00, 7996.86it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 8008.61it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  79%|███████▉  | 811/1024 [00:00<00:00, 8107.90it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 4902.23it/s]
+(EngineCore pid=1954) [Aiter Triton] Pre-compiling fp8 BMM kernel:   0%|          | 0/1024 [00:00<?, ?it/s][Aiter Triton] Pre-compiling fp8 BMM kernel:  78%|███████▊  | 797/1024 [00:00<00:00, 7965.85it/s][Aiter Triton] Pre-compiling fp8 BMM kernel: 100%|██████████| 1024/1024 [00:00<00:00, 5812.73it/s]
+(EngineCore pid=1954) INFO 09-11 17:30:33 [model_runner.py:426] Model loading took 89.39 GiB memory and 63.509320 seconds
+(EngineCore pid=1954) INFO 09-11 17:30:33 [interface.py:933] Setting attention block size to 4352 tokens to ensure that attention page size is >= mamba page size.
+(EngineCore pid=1954) INFO 09-11 17:30:33 [interface.py:957] Padding mamba page size by 2.64% to ensure that mamba page size and attention page size are exactly equal.
+(EngineCore pid=1954) INFO 09-11 17:30:33 [utils.py:306] Using LBHNC KV cache layout.
+(EngineCore pid=1954) [aiter] import [module_mhc] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_mhc.so
+(EngineCore pid=1954) [aiter] import [module_moe_asm] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_moe_asm.so
+(EngineCore pid=1954) [aiter] import [module_rmsnorm_quant] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_rmsnorm_quant.so
+(EngineCore pid=1954) INFO 09-11 17:30:40 [indexer.py:694] DSA indexer decode path: use_flattening=False supports_varlen=False (next_n=1, use_fp4_cache=False)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366] EngineCore failed to start.
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366] Traceback (most recent call last):
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1328, in run_engine_core
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     super().__init__(
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 145, in __init__
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 308, in _initialize_kv_caches
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     available_gpu_memory = self.model_executor.determine_available_memory()
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 149, in determine_available_memory
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return self.collective_rpc("determine_available_memory")
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 582, in determine_available_memory
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py", line 949, in profile_cudagraph_memory
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return _profile_cudagraph_memory(self)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 833, in profile_cudagraph_memory
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     measured = int(runner.capture_model(profile_only=True))
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py", line 982, in capture_model
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     self.cudagraph_manager.capture(
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 549, in capture
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366]     raise RuntimeError(
+(EngineCore pid=1954) ERROR 09-11 17:30:40 [core.py:1366] RuntimeError: Glm5NextForConditionalGeneration: piecewise CUDA graphs (cudagraph_mode=FULL_AND_PIECEWISE) unavailable, model is not torch-compiled and breakable CUDA graph is off. Set VLLM_USE_BREAKABLE_CUDAGRAPH=1 or cudagraph_mode=NONE/FULL.
+(EngineCore pid=1954) Process EngineCore:
+(EngineCore pid=1954) Traceback (most recent call last):
+(EngineCore pid=1954)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=1954)     self.run()
+(EngineCore pid=1954)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=1954)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1370, in run_engine_core
+(EngineCore pid=1954)     raise e
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1328, in run_engine_core
+(EngineCore pid=1954)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=1954)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore pid=1954)     super().__init__(
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 145, in __init__
+(EngineCore pid=1954)     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=1954)                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 308, in _initialize_kv_caches
+(EngineCore pid=1954)     available_gpu_memory = self.model_executor.determine_available_memory()
+(EngineCore pid=1954)                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 149, in determine_available_memory
+(EngineCore pid=1954)     return self.collective_rpc("determine_available_memory")
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+(EngineCore pid=1954)     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=1954)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 582, in determine_available_memory
+(EngineCore pid=1954)     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(EngineCore pid=1954)                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py", line 949, in profile_cudagraph_memory
+(EngineCore pid=1954)     return _profile_cudagraph_memory(self)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 833, in profile_cudagraph_memory
+(EngineCore pid=1954)     measured = int(runner.capture_model(profile_only=True))
+(EngineCore pid=1954)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=1954)     return func(*args, **kwargs)
+(EngineCore pid=1954)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py", line 982, in capture_model
+(EngineCore pid=1954)     self.cudagraph_manager.capture(
+(EngineCore pid=1954)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 549, in capture
+(EngineCore pid=1954)     raise RuntimeError(
+(EngineCore pid=1954) RuntimeError: Glm5NextForConditionalGeneration: piecewise CUDA graphs (cudagraph_mode=FULL_AND_PIECEWISE) unavailable, model is not torch-compiled and breakable CUDA graph is off. Set VLLM_USE_BREAKABLE_CUDAGRAPH=1 or cudagraph_mode=NONE/FULL.
+[rank0]:[W911 17:30:41.783668957 ProcessGroupNCCL.cpp:1647] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=1858) Traceback (most recent call last):
+(APIServer pid=1858)   File "/usr/local/bin/vllm", line 10, in <module>
+(APIServer pid=1858)     sys.exit(main())
+(APIServer pid=1858)              ^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/main.py", line 106, in main
+(APIServer pid=1858)     args.dispatch_function(args)
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/cli/serve.py", line 153, in cmd
+(APIServer pid=1858)     uvloop.run(run_server(args))
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=1858)     return __asyncio.run(
+(APIServer pid=1858)            ^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/lib/python3.12/asyncio/runners.py", line 195, in run
+(APIServer pid=1858)     return runner.run(main)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=1858)     return self._loop.run_until_complete(task)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=1858)     return await main
+(APIServer pid=1858)            ^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=1858)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=1858)     async with build_async_engine_client(
+(APIServer pid=1858)                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1858)     return await anext(self.gen)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=1858)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=1858)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1858)     return await anext(self.gen)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=1858)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=1858)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 226, in from_vllm_config
+(APIServer pid=1858)     return cls(
+(APIServer pid=1858)            ^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py", line 160, in __init__
+(APIServer pid=1858)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=1858)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1858)     return func(*args, **kwargs)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 163, in make_async_mp_client
+(APIServer pid=1858)     return AsyncMPClient(
+(APIServer pid=1858)            ^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1858)     return func(*args, **kwargs)
+(APIServer pid=1858)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 1060, in __init__
+(APIServer pid=1858)     super().__init__(
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py", line 656, in __init__
+(APIServer pid=1858)     with launch_core_engines(
+(APIServer pid=1858)          ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1858)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=1858)     next(self.gen)
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1240, in launch_core_engines
+(APIServer pid=1858)     wait_for_engine_startup(
+(APIServer pid=1858)   File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py", line 1320, in wait_for_engine_startup
+(APIServer pid=1858)     raise RuntimeError(
+(APIServer pid=1858) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

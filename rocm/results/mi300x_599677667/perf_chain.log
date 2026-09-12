@@ -1,0 +1,8 @@
+### 17:41:34 STEP native eager + MTP k=2 (token-counted bench)
+TTFT 2.05s | 256 tokens (106 chunks) in 10.90s -> 23.5 tok/s decode (single stream)
+TTFT 1.94s | 256 tokens (103 chunks) in 10.58s -> 24.2 tok/s decode (single stream)
+### 17:43:48 STEP native + HIP graphs + MTP k=2
+TTFT 1.98s | 256 tokens (115 chunks) in 12.00s -> 21.3 tok/s decode (single stream)
+TTFT 1.86s | 256 tokens (105 chunks) in 10.95s -> 23.4 tok/s decode (single stream)
+### 17:46:13 leaving graphs+MTP server running
+### 17:46:13 DONE

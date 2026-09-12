@@ -1,0 +1,49 @@
+### 16:17:39 STEP up (docker pull rocm/pytorch:latest + container start)
+docker.io/rocm/pytorch:latest
+torch 2.13.0+rocm7.14.0 hip 7.14.60850 | AMD Instinct MI300X VF | archs ['gfx942']
+  Name:                    gfx942                             
+HIP version: 7.14.60850-0000000
+### 16:17:41 STEP build
+
+exllamav3_ext build exit: 0
+vllm_exl3_c build exit: 0
+6661592 Sep 11 16:18 exllamav3_ext.cpython-312-x86_64-linux-gnu.so
+1544120 Sep 11 16:18 vllm_exl3_c.cpython-312-x86_64-linux-gnu.so
+exllamav3_ext ROCm: True | vllm_exl3_c ROCm: True
+### 16:18:31 STEP test (native wave64, gfx942)
+...................K=2 cosine=1.000000 rel_l2=0.0008
+.K=3 cosine=1.000000 rel_l2=0.0008
+.K=4 cosine=1.000000 rel_l2=0.0008
+22 passed in 9.89s
+pytest exit: 139
+### 16:19:12 STEP segfault-at-exit recheck
+p2b_min exit code: 139
+bash: line 1:   501 Segmentation fault      (core dumped) PYTHONPATH=/work/rocm python rocm/tests/p2b_min.py > /dev/null 2>&1
+[ 1417.307261] python[5360]: segfault at 718c6897ca50 ip 0000718dd4b49ad6 sp 00007ffc99b421c0 error 4 in libhsa-runtime64.so.1[718dd4b06000+140000] likely on CPU 14 (core 14, socket 0)
+[ 1450.060430] python[5476]: segfault at 7596e3d7cb50 ip 0000759854d84ad6 sp 00007ffeb1387ac0 error 4 in libhsa-runtime64.so.1[759854d41000+140000] likely on CPU 5 (core 5, socket 0)
+### 16:19:26 STEP plugin-tests
+
+
+
+        """Verify end-to-end numerical parity against sequential reference and benchmark latency."""
+        print(f"Cosine similarity: {cos_sim:.5f}")
+        assert cos_sim >= 0.999, f"Cosine similarity {cos_sim:.5f} < 0.999"
+        print(f"p2b_fused_moe latency: {dt_us:.1f} us (TARGET: <= 300 us)")
+Cosine similarity: 1.00000
+p2b_fused_moe latency: 686.9 us (TARGET: <= 300 us)
+        """Verify numerical parity and latency speedup over sequential GEMV on active experts."""
+FAILED tests/test_native_p2b_moe.py::test_p2b_moe_parity_and_latency - Assert...
+FAILED tests/test_native_p2b_batched.py::test_p2b_batched_parity_and_speedup
+FAILED tests/test_exl3_linear.py::test_exl3_linear_basic - ModuleNotFoundErro...
+FAILED tests/test_exl3_linear.py::test_exl3_linear_mixed_mul1 - ModuleNotFoun...
+4 failed, 42 passed, 1 skipped in 62.50s (0:01:02)
+### 16:20:39 STEP wave64-flag sanity (no-op on CDNA, must still pass)
+6661592 Sep 11 16:21 exllamav3_ext.cpython-312-x86_64-linux-gnu.so
+1544120 Sep 11 16:21 vllm_exl3_c.cpython-312-x86_64-linux-gnu.so
+exllamav3_ext ROCm: True | vllm_exl3_c ROCm: True
+...................K=2 cosine=1.000000 rel_l2=0.0008
+.K=3 cosine=1.000000 rel_l2=0.0008
+.K=4 cosine=1.000000 rel_l2=0.0008
+22 passed in 9.08s
+pytest exit: 139
+### 16:21:42 DONE

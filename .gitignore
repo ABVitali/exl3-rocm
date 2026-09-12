@@ -1,0 +1,9 @@
+*.so
+build_ext*.log
+*_hip.*
+*.hip
+rocm/build/
+__pycache__/
+.pytest_cache/
+upstream-*/
+ref/

@@ -1,0 +1,199 @@
++ vllm serve /models/DeepSeek-V4.1-Flash-EXL3-3.5bpw --served-model-name DeepSeek-V4.1-Flash-EXL3 --host 127.0.0.1 --port 8889 --quantization exl3 --tokenizer-mode deepseek_v41 --tensor-parallel-size 1 --max-model-len 8192 --max-num-seqs 1 --max-num-batched-tokens 2048 --gpu-memory-utilization 0.96 --no-enable-prefix-caching --skip-mm-profiling --limit-mm-per-prompt {"image":0} --enforce-eager 
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347] 
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev398+g79a7108d9
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /models/DeepSeek-V4.1-Flash-EXL3-3.5bpw
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:347] 
+(APIServer pid=4824) INFO 09-12 04:38:47 [api_utils.py:286] non-default args: {'model_tag': '/models/DeepSeek-V4.1-Flash-EXL3-3.5bpw', 'host': '127.0.0.1', 'port': 8889, 'model': '/models/DeepSeek-V4.1-Flash-EXL3-3.5bpw', 'tokenizer_mode': 'deepseek_v41', 'max_model_len': 8192, 'quantization': 'exl3', 'enforce_eager': True, 'served_model_name': ['DeepSeek-V4.1-Flash-EXL3'], 'gpu_memory_utilization': 0.96, 'enable_prefix_caching': False, 'limit_mm_per_prompt': {'image': 0}, 'skip_mm_profiling': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 1}
+(APIServer pid=4824) WARNING 09-12 04:38:47 [envs.py:2282] Unknown vLLM environment variable detected: VLLM_ENGRAM_DISK_THREADS
+(APIServer pid=4824) WARNING 09-12 04:38:47 [envs.py:2282] Unknown vLLM environment variable detected: VLLM_ENGRAM_DISK
+(APIServer pid=4824) WARNING 09-12 04:38:47 [envs.py:2282] Unknown vLLM environment variable detected: VLLM_EXL3_MOE_KERNEL
+(APIServer pid=4824) INFO 09-12 04:38:57 [model.py:692] Resolved architecture: DeepseekV41ForCausalLM
+(APIServer pid=4824) INFO 09-12 04:38:57 [model.py:2034] Using max model len 8192
+(APIServer pid=4824) [aiter] import [module_aiter_core] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_core.so
+(APIServer pid=4824) INFO 09-12 04:39:00 [registry.py:141] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(APIServer pid=4824) INFO 09-12 04:39:00 [model.py:900] Disabled mm_prefix attention mode because multimodal inputs are configuration-disabled. Attention backends without mm_prefix support may now be selected.
+(APIServer pid=4824) WARNING 09-12 04:39:00 [vllm.py:1406] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=4824) WARNING 09-12 04:39:00 [vllm.py:1441] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=4824) INFO 09-12 04:39:00 [kernel.py:373] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(APIServer pid=4824) INFO 09-12 04:39:00 [vllm.py:1620] Cudagraph is disabled under eager mode
+(APIServer pid=4824) INFO 09-12 04:39:00 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant, mla_dual_rms_norm, qk_norm_rope_kvcache
+(EngineCore pid=5031) INFO 09-12 04:39:05 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev398+g79a7108d9) with config: model='/models/DeepSeek-V4.1-Flash-EXL3-3.5bpw', speculative_config=None, tokenizer='/models/DeepSeek-V4.1-Flash-EXL3-3.5bpw', skip_tokenizer_init=False, tokenizer_mode=deepseek_v41, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=exl3, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=DeepSeek-V4.1-Flash-EXL3, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', '+quant_fp8', '+grouped_topk', '+sparse_attn_indexer', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [256, 2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_mla_dual_rms_norm': True, 'fuse_rope_kvcache': False, 'fuse_qk_norm_rope_kvcache': True}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=5031) [aiter] import [module_aiter_core] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_core.so
+(EngineCore pid=5031) INFO 09-12 04:39:08 [registry.py:141] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(EngineCore pid=5031) INFO 09-12 04:39:08 [parallel_state.py:1798] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.2:60743 backend=nccl
+(EngineCore pid=5031) INFO 09-12 04:39:08 [parallel_state.py:2142] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+(EngineCore pid=5031) INFO 09-12 04:39:08 [gpu_worker.py:436] Using V2 Model Runner
+(EngineCore pid=5031) INFO 09-12 04:39:09 [model_runner.py:383] Loading model from scratch...
+(EngineCore pid=5031) INFO 09-12 04:39:09 [rocm.py:749] Using AITER Flash Attention backend for ViT model.
+(EngineCore pid=5031) INFO 09-12 04:39:09 [mm_encoder_attention.py:372] Using AttentionBackendEnum.ROCM_AITER_FA for MMEncoderAttention.
+(EngineCore pid=5031) INFO 09-12 04:39:09 [quant_config.py:79] DeepSeek V4 expert_dtype resolved to 'fp4'
+(EngineCore pid=5031) INFO 09-12 04:39:09 [__init__.py:889] Using RocmDotScaledMxfp8LinearKernel for MXFP8 GEMM
+(EngineCore pid=5031) INFO 09-12 04:39:09 [attention.py:140] Using DeepSeek's fp8_ds_mla KV cache format.
+(EngineCore pid=5031) INFO 09-12 04:39:09 [engram.py:787] Engram table offloaded to pinned host memory: 384006168 rows x 256, 94.42 GiB per rank
+(EngineCore pid=5031) INFO 09-12 04:39:10 [attention.py:1058] Using FP8 indexer cache for Lightning Indexer.
+(EngineCore pid=5031) INFO 09-12 04:39:10 [engram.py:787] Engram table offloaded to pinned host memory: 384016682 rows x 256, 94.42 GiB per rank
+(EngineCore pid=5031) INFO 09-12 04:39:10 [engram.py:432] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(EngineCore pid=5031) WARNING 09-12 04:39:10 [compilation.py:1354] Op 'quant_fp8' not present in model, enabling with '+quant_fp8' has no effect
+(EngineCore pid=5031) WARNING 09-12 04:39:10 [compilation.py:1354] Op 'grouped_topk' not present in model, enabling with '+grouped_topk' has no effect
+(EngineCore pid=5031) INFO 09-12 04:39:11 [weight_utils.py:863] Filesystem type for checkpoints: EXT4. Checkpoint size: 428.44 GiB. Available RAM: 227.44 GiB.
+(EngineCore pid=5031) INFO 09-12 04:39:11 [weight_utils.py:893] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre) and the checkpoint size (428.44 GiB) exceeds 90% of available RAM (227.44 GiB).
+(EngineCore pid=5031) Loading safetensors checkpoint shards:   0% Completed | 0/48 [00:00<?, ?it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  10% Completed | 5/48 [00:00<00:01, 37.50it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  19% Completed | 9/48 [00:00<00:01, 28.37it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  25% Completed | 12/48 [00:00<00:01, 26.53it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  31% Completed | 15/48 [00:00<00:02, 11.33it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  38% Completed | 18/48 [00:01<00:02, 13.56it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  44% Completed | 21/48 [00:01<00:01, 15.68it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  50% Completed | 24/48 [00:01<00:01, 17.50it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  56% Completed | 27/48 [00:01<00:01, 19.02it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  62% Completed | 30/48 [00:01<00:00, 20.25it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  69% Completed | 33/48 [00:02<00:01, 10.60it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  75% Completed | 36/48 [00:02<00:00, 12.73it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  81% Completed | 39/48 [00:02<00:00, 14.76it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  88% Completed | 42/48 [00:02<00:00, 16.58it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  94% Completed | 45/48 [00:02<00:00, 13.80it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards:  98% Completed | 47/48 [00:03<00:00, 13.59it/s]
+(EngineCore pid=5031) Loading safetensors checkpoint shards: 100% Completed | 48/48 [00:03<00:00, 15.68it/s]
+(EngineCore pid=5031) 
+(EngineCore pid=5031) INFO 09-12 04:44:17 [default_loader.py:430] Loading weights took 306.83 seconds
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:19 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.15.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:20 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.19.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.20.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=4 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.22.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.23.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.24.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.25.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.26.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:21 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.27.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.28.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.29.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.30.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.31.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.32.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.33.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.34.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.35.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.36.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.37.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.38.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2097] EXL3 per-layer K override: layer prefix language_model.model.layers.39.ffn.experts uses bits=3 (base 4)
+(EngineCore pid=5031) INFO 09-12 04:44:22 [exl3.py:2105] EXL3 MCG trellis engaged for routed experts: bits=3 experts_local=384 hidden=5120 intermediate_local=2304 fused_moe=exl3_moe concurrency=8 (no BF16 expert reconstruct at load)
+(EngineCore pid=5031) INFO 09-12 04:44:23 [model_runner.py:408] Model loading took 232.55 GiB memory and 314.051739 seconds
+(EngineCore pid=5031) INFO 09-12 04:44:23 [interface.py:635] Setting kv cache block size to 64 for ROCM_FLASHMLA_SPARSE_DSV4 backend.
+(EngineCore pid=5031) INFO 09-12 04:44:23 [utils.py:306] Using BLHNC KV cache layout.
+(EngineCore pid=5031) [aiter] merge tuned file under model_configs/ and configs/ /usr/local/lib/python3.12/dist-packages/aiter/configs/bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/llama70B_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/glm47_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/dsv3_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/kimik3_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/dsv4_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/kimi_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/glm53_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/glm5_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/qwen3_8b_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/llama405B_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/flux2_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/qwen3_5_397b_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/q3vl_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/minimax_m3_eagle_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/gptoss_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/kimik2_bf16_tuned_gemm.csv:/usr/local/lib/python3.12/dist-packages/aiter/configs/model_configs/qwen32B_bf16_tuned_gemm.csv
+(EngineCore pid=5031) [aiter] shape is M:2048, N:32, K:5120 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(EngineCore pid=5031) INFO 09-12 04:44:33 [gpu_worker.py:632] Available KV cache memory: 37.15 GiB
+(EngineCore pid=5031) INFO 09-12 04:44:33 [kv_cache_utils.py:2321] GPU KV cache size: 2,636,363 tokens, Maximum concurrency for 8,192 tokens per request: 321.82x
+(EngineCore pid=5031) INFO 09-12 04:44:33 [indexer.py:743] DSA indexer decode path: use_flattening=False supports_varlen=False (next_n=1, use_fp4_cache=False)
+(EngineCore pid=5031) INFO 09-12 04:44:33 [kernel_warmup.py:136] JIT kernel warmup starting.
+(EngineCore pid=5031) JIT kernel warmup (86 compile keys):   0%|          | 0/6 [00:00<?, ?kernel/s]JIT kernel warmup (86 compile keys): 100%|██████████| 6/6 [00:00<00:00, 57.97kernel/s, BuildPrefillChunkMetadataKernel (36 keys)]JIT kernel warmup (86 compile keys): 100%|██████████| 6/6 [00:00<00:00, 57.90kernel/s, BuildPrefillChunkMetadataKernel (36 keys)]
+(EngineCore pid=5031) INFO 09-12 04:44:33 [kernel_warmup.py:146] JIT kernel warmup finished in 0.11s.
+(EngineCore pid=5031) INFO 09-12 04:44:33 [selector.py:194] Using ROCM_AITER_FA MLA prefill backend.
+(EngineCore pid=5031) INFO 09-12 04:44:33 [ll_bf16.py:30] cuteDSL (CUTLASS Python) not available, ll_bf16_gemm disabled
+(EngineCore pid=5031) INFO 09-12 04:44:33 [flashinfer_sparse_mla_warmup.py:238] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(EngineCore pid=5031) INFO 09-12 04:44:33 [engram.py:652] Engram table on disk: layers.1.engram.embed.weight (384006168 rows x 256) read on demand from model-00047-of-00048.safetensors
+(EngineCore pid=5031) INFO 09-12 04:44:33 [engram.py:652] Engram table on disk: layers.14.engram.embed.weight (384016682 rows x 256) read on demand from model-00048-of-00048.safetensors
+(EngineCore pid=5031) [aiter] shape is M:16, N:128, K:512 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(EngineCore pid=5031) INFO 09-12 04:44:35 [gpu_worker.py:867] Free memory on device (287.35/287.69 GiB) on startup. Desired GPU memory utilization is (0.96, 276.18 GiB). Actual usage is 238.2 GiB for consumed memory (weights + non-torch), 0.83 GiB for peak activation, and 0.0 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=39730484921` (37.0 GiB) to fit into requested memory, or `--kv-cache-memory=51725858816` (48.17 GiB) to fully utilize gpu memory. Current kv cache memory in use is 37.15 GiB.
+(EngineCore pid=5031) INFO 09-12 04:44:43 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=5031) INFO 09-12 04:44:44 [torch_utils.py:280] Reducing Torch threads from 24 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=5031) INFO 09-12 04:44:44 [core.py:379] init engine (profile, create kv cache, warmup model) took 20.78 s
+(EngineCore pid=5031) WARNING 09-12 04:44:44 [vllm.py:1406] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=5031) WARNING 09-12 04:44:44 [vllm.py:1441] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=5031) INFO 09-12 04:44:44 [kernel.py:373] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(EngineCore pid=5031) INFO 09-12 04:44:44 [vllm.py:1620] Cudagraph is disabled under eager mode
+(EngineCore pid=5031) INFO 09-12 04:44:44 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant, mla_dual_rms_norm, qk_norm_rope_kvcache
+(APIServer pid=4824) INFO 09-12 04:44:44 [entry.py:135] Supported tasks: ['generate']
+(APIServer pid=4824) INFO 09-12 04:44:45 [factories.py:82] Scale-out endpoints are disabled. Set VLLM_ENABLE_SCALE_OUT_ENDPOINTS=1 to enable them.
+(APIServer pid=4824) INFO 09-12 04:44:45 [entry.py:139] Starting vLLM server on http://127.0.0.1:8889
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:61] Available routes are:
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /docs, Methods: GET, HEAD
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /load, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /version, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /health, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /metrics, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /tokenize, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /detokenize, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/models, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /ping, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /ping, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /invocations, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/chat/completions/batch, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/responses, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/completions, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/messages, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /generative_scoring, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=4824) INFO 09-12 04:44:45 [launcher.py:70] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=4824) INFO:     Started server process [4824]
+(APIServer pid=4824) INFO:     Waiting for application startup.
+(APIServer pid=4824) INFO:     Application startup complete.
+(EngineCore pid=5031) WARNING 09-12 04:45:55 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _engram_lookup_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=5031) [aiter] shape is M:47, N:128, K:512 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(APIServer pid=4824) INFO 09-12 04:46:00 [loggers.py:310] Engine 000: Avg prompt throughput: 4.7 tokens/s, Avg generation throughput: 3.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:46:10 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.5 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO:     127.0.0.1:38922 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=4824) INFO:     127.0.0.1:52424 - "POST /v1/completions HTTP/1.1" 200 OK
+(EngineCore pid=5031) [aiter] shape is M:21, N:128, K:512 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(APIServer pid=4824) INFO 09-12 04:46:20 [loggers.py:310] Engine 000: Avg prompt throughput: 2.1 tokens/s, Avg generation throughput: 7.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:46:30 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:46:40 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 3.5 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:46:50 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(EngineCore pid=5031) [aiter] shape is M:61, N:128, K:512 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(APIServer pid=4824) INFO 09-12 04:47:50 [loggers.py:310] Engine 000: Avg prompt throughput: 6.1 tokens/s, Avg generation throughput: 5.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO:     127.0.0.1:32962 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(EngineCore pid=5031) [aiter] shape is M:56, N:128, K:512 dtype='torch.bfloat16' otype='torch.bfloat16' bias=False, scaleAB=False, bpreshuffle=False, not found tuned config in /tmp/aiter_configs/bf16_tuned_gemm.csv, will use default config! using torch solution:0
+(APIServer pid=4824) INFO 09-12 04:48:00 [loggers.py:310] Engine 000: Avg prompt throughput: 5.6 tokens/s, Avg generation throughput: 7.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:48:10 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.5 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO:     127.0.0.1:60638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=4824) INFO 09-12 04:48:20 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 2.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(APIServer pid=4824) INFO 09-12 04:48:30 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%

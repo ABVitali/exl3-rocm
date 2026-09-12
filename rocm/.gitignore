@@ -1,0 +1,5 @@
+*_hip.*
+*.hip
+build/
+*.so
+build_ext*.log
